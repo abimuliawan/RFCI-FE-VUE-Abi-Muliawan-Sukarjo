@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soal Nomor 2</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <label>
+        <input type="text" v-model:value="message">
+    </label>
+    <p>Output: {{ message }}</p>
+    <p id="pReserve"></p>
+    <button @click="reversedMessage">Reserve</button>
+    <button @click="reversedMessage">Undo/Redo</button>
+</div>
+
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "Hello",
+      tempUndoMessage: "",
+      tempRedoMessage: ""
+    },
+    methods: {
+      reversedMessage: function() {
+        this.tempUndoMessage = this.message;
+        this.message = this.message.split('').reverse().join('');
+      },
+      undoMessage: function () {
+        this.tempRedoMessage = this.message;
+        this.message = this.tempUndoMessage;
+      }
+    },
+  })
+</script>
+</body>
+</html>
